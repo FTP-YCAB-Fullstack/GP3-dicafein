@@ -1,26 +1,11 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Transaction_Menu extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      this.belongsTo(models.User, {foreignKey: 'user_id'})
-      this.belongsTo(models.Menu, {foreignKey: 'menu_id'})
-      // define association here
-    }
-  };
-  Transaction_Menu.init({
-    user_id: DataTypes.INTEGER,
-    menu_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Transaction_Menu',
-  });
-  return Transaction_Menu;
-};
+const router = require('express').Router()
+const TransactionMenuController = require('../controllers/transaction_menu')
+const authentication = require('../middlewares/authentication')
+const {validate} = require('express-validation')
+const validation = require('../validation/transactionValidation')
+
+router.post('/transaction_menu' , authentication  , validate(validation.menu()), TransactionMenuController.create)
+router.delete('/transaction_menu/:id' , authentication , TransactionMenuController.delete)
+
+
+module.exports = router
