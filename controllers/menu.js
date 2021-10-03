@@ -28,6 +28,8 @@ class menuController {
         try {
             let {id} = req.params
             let menu = await Menu.findByPk(id)
+            if(!menu) return next({name: "NotFound"})
+            
             res.status(200).json(menu)
         } catch (error) {
             next(error)
@@ -39,6 +41,7 @@ class menuController {
             let {id} = req.params
             let {name,  category ,description, cost, image} = req.body
             let menu = await Menu.findByPk(id)
+            if(!menu) return next({name: "NotFound"})
             menu.update({name,  category ,description, cost, image})
             res.status(200).json({
                 message: 'Update Menu Success!',
@@ -52,6 +55,7 @@ class menuController {
         try {
             let {id} = req.params
             let menu = await Menu.findByPk(id)
+            if(!menu) return next({name: "NotFound"})
             menu.destroy()
             res.status(200).json({
                 message: 'Data Deleted!'
