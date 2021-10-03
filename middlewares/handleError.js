@@ -27,11 +27,11 @@ const handleError = (error , req, res,next) => {
             break
         case "Validation" :
             statusCode = 400
-            errMessage = error.message || "Unprocessable Entity"
+            errMessage = error.message || "Bad Request"
             break
         case "ValidationError":
             statusCode = error.statusCode
-            errMessage = error.details.body || "Unprocessable Entity"
+            errMessage = error.details.body || "Bad Request"
             break
         default:
             errMessage = error.message || "Internal Server Error"
