@@ -3,16 +3,20 @@ dicafein Documentation
 
 # Rest API Documentation for Dicafein
 
+# Scema Diagram
+<img src="https://i.ibb.co/PZhFD6p/dicafein-diagram.png" alt="dicafein-diagram" border="0"></a>
+
 ## 1. User Collection
 #### a. Get All Users
-##### Endpoint ``/users``
+```GET:/users```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
-
 ```
+##### Response
+
+```js
     {
         "id": 43,
         "name": "fathya",
@@ -31,18 +35,20 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### b. Get Detail Users
-##### Endpoint ``/users/:id``
-##### Header
-key: admin_token
-value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
+```GET:/users/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 41
-
-##### Respond
 ```
+##### Header
+```
+key: admin_token
+value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
+```
+##### Response
+```js
 {
     "id": 41,
     "name": "user",
@@ -53,13 +59,15 @@ value: 41
 ```
 
 #### c. Login
-##### Endpoint ``/users/login``
+```POST:/users/login```
 ##### Header
+```
 Key: token
 Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYzMjk2OTU0N30.gL72_fhgqhxayQXK7lyZMQJ-xSW6yX1Ms-2LXkufMUA
+```
 ##### Body ``raw``
 
-```
+```js
 // admin
 {
     "email" : "admin@email.com",
@@ -75,7 +83,7 @@ Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYzMjk2OTU0
 
 
 ##### Response 
-```
+```js
 {
     "message": "Success, you've been logged in",
     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYzMjk2OTU0N30.gL72_fhgqhxayQXK7lyZMQJ-xSW6yX1Ms-2LXkufMUA"
@@ -84,9 +92,9 @@ Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYzMjk2OTU0
 
 
 #### d. Register
-##### Endpoint ``/users/login``
+```POST:/users/register```
 ##### Body ``raw``
-```
+```js
 {
     //user
     
@@ -96,8 +104,8 @@ Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYzMjk2OTU0
 }
 ```
 
-##### Respond
-```
+##### Response
+```js
 {
     "message": "Register Success",
     "user": {
@@ -110,14 +118,15 @@ Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYzMjk2OTU0
 
 ## 2. Transaction Collection
 #### a. Get Transaction
-##### Endpoint ``/transactions``
+```GET:/transactions```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
-
 ```
+##### Response
+
+```js
 [
   
     {
@@ -139,15 +148,16 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ]
 ```
 #### b. Create Transaction
-##### Endpoint ``/transactions``
+```POST:/transactions```
 
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
+```
 ##### Body ``raw``
 
-```
+```js
 {
     "status": "not yet"
     "payment_money": "100000"
@@ -155,9 +165,9 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 }
 ```
 
-##### Respond 
+##### Response 
 
-```
+```js
 {
     "message": "Transaction succesfully created",
     "transaction": {
@@ -171,21 +181,24 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 }
 ```
 #### c. Get Detail Transaction
-##### Endpoint ``/transactions/:id``
+```GET:/transactions/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 8
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3Njd9.BlbttGP0r0kGIJTv4qq0rz2R3LvaeDTeD8MPfNOcM78
-
-##### Respond
-
 ```
+##### Response
+
+```js
 {
     "id": 8,
     "user_id": 51,
@@ -197,18 +210,21 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3
 ```
 
 #### d. Update Transaction
-##### Endpoint ``/transactions/:id``
+```PUT:/transactions/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 8
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
+```
 ##### Body ``raw``
 
-```
+```js
 {
     "status": "done"
     "payment_money": "150000"
@@ -216,8 +232,8 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 }
 ```
 
-##### Respond
-```
+##### Response
+```js
 {
     "id": 8,
     "user_id": 51,
@@ -229,40 +245,46 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### e. Delete Transaction
-##### Endpoint ``/transactions`/:id`
+```DELETE:/transactions/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 8
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
 ```
+##### Response
+```js
 {
     "message": "Deleted transaction succesfully"
 }
 ```
 
 #### f. Update Status Transaction
-##### Endpoint ``/transactions/:id/status``
+```PATCH:/transactions/:id/status```
 ##### Params
+```
 Path Variables
 key: id
 value: 8
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "status": "not yet"
 }
 ```
-##### Respond 
-```
+##### Response 
+```js
 {
     "message": "Update status successfully",
     "transaction": {
@@ -278,16 +300,17 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 
 ## 3. Menu Collection
 #### a. Get All Menu
-##### Endpoint ``/menus``
+```GET:/menus```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3Njd9.BlbttGP0r0kGIJTv4qq0rz2R3LvaeDTeD8MPfNOcM78
-
-##### Respond
 ```
+##### Response
+```js
 [
     {
         "id": 17,
@@ -323,13 +346,14 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3
 ```
 
 #### b. Create Menu
-##### Endpoint ``/menus``
+```POST:/menus```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "name": "Matcha Latte",
     "category": "food",
@@ -340,8 +364,8 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 }
 ```
 
-##### Respond
-```
+##### Response
+```js
 {
     "message": "Create Menu Success!",
     "menu": {
@@ -359,21 +383,24 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 
 
 #### c. Get Detail Menu
-##### Endpoint ``/menus/:id``
+```GET:/menus/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 22
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3Njd9.BlbttGP0r0kGIJTv4qq0rz2R3LvaeDTeD8MPfNOcM78
-
-##### Respond
-
 ```
+##### Response
+
+```js
 {
     "id": 22,
     "name": "Matcha Latte",
@@ -386,34 +413,40 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3
 }
 ```
 #### d. Delete Menu
-##### Endpoint ``/menus/:id``
+```DELETE:/menus/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 21
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respoond
 ```
+##### Respoond
+```js
 {
     "message": "Data Deleted!"
 }
 ```
 
 #### e. Update Menu
-##### Endpoint ``/menus/:id``
+```PUT:/menus/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 22
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "name": "Matcha Latte",
     "category": "drink",
@@ -425,8 +458,8 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 
 ```
 
-##### Respond
-```
+##### Response
+```js
 {
     "message": "Update Menu Success!",
     "menu": {
@@ -444,16 +477,17 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 
 ## 4. Table
 #### a. Get All Table
-##### Endpoint ``/tables``
+```GET:/tables```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3Njd9.BlbttGP0r0kGIJTv4qq0rz2R3LvaeDTeD8MPfNOcM78
-
-##### Respond
 ```
+##### Response
+```js
 [
     {
         "id": 25,
@@ -474,21 +508,22 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJpYXQiOjE2MzI5Nzc3
 ```
 
 #### b. Crate Table
-##### Endpoint ``/tables``
+```POST:/tables```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
      "chalk_board": 12,
      "status": "empty"
 }
 ```
 
-##### Respond 
-```
+##### Response 
+```js
 {
     "id": 28,
     "chalk_board": 12,
@@ -499,17 +534,20 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### c. Detail Table
-##### Endpoint ``/tables/:id``
+```GET:/tables/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 28
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
 ```
+##### Response
+```js
 {
     "id": 28,
     "chalk_board": 12,
@@ -520,25 +558,28 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### d. Update Table
-##### Endpoint ``/tables``
+```PUT:/tables```
 ##### Params
+```
 Path Variables
 key: id
 value: 28
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
      "chalk_board": 15,
      "status": "fill"
 }
 ```
 
-##### Respond
-```
+##### Response
+```js
 {
     "message": "Update cafe_tables Success!",
     "menu": {
@@ -552,42 +593,48 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### e. Delete Table
-##### Endpoint ``/tables/:id``
+```DELETE:/tables/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 28
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
-
 ```
+##### Response
+
+```js
 {
     "Message" : "Deleted cafe_tables Successfully! "
 }
 ```
 
 #### f. Update Status Table
-##### Endpoint ``/tables/:id/status``
+```PATCH:/tables/:id/status```
 ##### Params
+```
 Path Variables
 key: id
 value: 27
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "status": "fill"
 }
 ```
 
-##### Respond 
-```
+##### Response 
+```js
 {
     "message": "Update status successfully",
     "cafe_table": {
@@ -603,13 +650,14 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 
 ## 5. Bookings
 #### a. Get All Bookings
-##### Endpoint ``/bookings``
+```GET:/bookings```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
 ```
+##### Response
+```js
 [
     {
         "id": 17,
@@ -630,21 +678,23 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ]
 ```
 #### b. Create Bookings
-##### Endpoint ``/bookings``
+```POST:/bookings```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "table_id": 25
 }
 ```
-##### Respond
-```
+##### Response
+```js
 {
     "message": "Booking succesfully created",
     "data_booking": {
@@ -659,19 +709,23 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### c. Detail Bookings
-##### Endpoint ``/bookings/:id``
-##### Paras
+```GET:/bookings/:id```
+##### Params
+```
+path variable
 key: id
 value: 19
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
 ```
+##### Response
+```js
 {
     "id": 19,
     "user_id": 51,
@@ -683,27 +737,30 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### d. Update Bookings
-##### Endpoint ``/bookings/:id``
+```PUT:/bookings/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 19
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "table_id": 18
 }
 ```
 
-##### Respond 
-```
+##### Response 
+```js
 {
     "message": "Booking updated",
     "data_booking": {
@@ -718,41 +775,47 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ```
 
 #### e. Delete Bookings
-##### Endpoint ``/bookings/:id``
+```DELETE:/bookings/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 19
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Respond
 ```
+##### Response
+```js
 {
     "message": "Deleted booking succesfully"
 }
 ```
 
 #### f. Update Status Booking
-##### Endpoint ``/bookings/:id/status``
+```PATCH:/bookings/:id/status```
 ##### Params
+```
 Path Variables
 key: id
 value: 18
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "status": "done"
 }
 ```
 
-##### Respond
-```
+##### Response
+```js
     "message": "Update status successfully",
         "bookings": {
             "user_id": 47,
@@ -764,22 +827,23 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1
 ## 6. Transaction-Menu
 
 #### a. Create Transaction_Menu
-##### Endpoint ``/transaction_menu/:id/status``
+```POST:/transaction_menu/:id/status```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
 
 key: user_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxLCJpYXQiOjE2MzMwNTc3NDF9.SB74MnaSK4-oTYh69eNoGCHld1sbekjmlVfwi0G_DBQ
-
-##### Body ``raw``
 ```
+##### Body ``raw``
+```js
 {
     "menu_id" : 1
 }
 ```
-##### Respond
-```
+##### Response
+```js
 {
     "id": 8,
     "user_id": 51,
@@ -790,21 +854,92 @@ value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxLCJpYXQiOjE2MzMwNTc3
 ```
 
 #### b. Delete Transaction_Menu
-##### Endpoint ``/transaction_menu/:id``
+```DELETE:/transaction_menu/:id```
 ##### Params
+```
 Path Variables
 key: id
 value: 8
-
+```
 ##### Header
+```
 key: admin_token
 value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwLCJpYXQiOjE2MzI5Nzc1NzN9.wJzBazCcx-LbMPeSiIaf7x4-i-KyWMV0czizxEcV8_A
-
-
-##### Respond
-
 ```
+
+##### Response
+
+```js
 {
     "message": "Deleted transaction menu succesfully"
+}
+```
+
+
+## Error Response
+
+### Unauthorize
+
+```js
+{
+    "message": "Unauthorize access"
+}
+```
+
+### Unauthenticated
+```js
+{
+    "message": "Unauthenticated"
+}
+```
+
+### Not Found
+
+```js
+{
+    "message": "The requested resource was not found"
+}
+```
+
+### Access Invalid
+```js
+{
+    "message": "Invalid access token."
+}
+```
+
+### Bad Request
+
+```js
+{
+    {
+    "message": [
+        {
+            "message": "\"email\" is required",
+            "path": [
+                "email"
+            ],
+            "type": "any.required",
+            "context": {
+                "label": "email",
+                "key": "email"
+            }
+        }
+    ]
+    }
+}
+```
+
+### Access Forbidden
+```js
+{
+    "message": "Access to that resource is forbidden"
+}
+```
+
+### Validation Error
+```js
+{
+    "message": "Validation error"
 }
 ```
