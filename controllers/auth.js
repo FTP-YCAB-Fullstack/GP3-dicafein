@@ -5,12 +5,11 @@ const jwt = require('jsonwebtoken')
 
 
 class authController{
-
     static register = async (req, res, next) => {
         try{
             const {name , email, password} = req.body
 
-            const user = await User.create({
+            await User.create({
                 name,
                 email,
                 password: bcrypt.hashSync(password, 8),
@@ -19,10 +18,11 @@ class authController{
 
             res.status(201).json({
                 message: 'Register Success',
-                user
+                user: {
+                    name, email
+                }
             })
         } catch(error){
-            console.log(error)
             next(error)
         }
     }
@@ -30,24 +30,23 @@ class authController{
     static login = async (req, res, next) => {
         try {
             const {email, password} = req.body
-
             // check user
             const user = await User.findOne({ where: {email}})
             if(!user){
-                throw new Error ('Invalid Email/Password')
+                return next({name: "Validation" , message: "Invalid Email/Password"})
             }
 
             // verify password
-            let check = bcrypt.compare(password, user.password)
+            let check = await bcrypt.compare(password, user.password)
             if (!check) {
-                throw new Error ('Invalid Email/Password')
-            }
+                return next({name: "Validation" , message: "Invalid Email/Password"})
+            } 
 
             // create token
             const jwtPayload = {
                 userId: user.id
             }
-            const accessToken = jwt.sign(jwtPayload, 'dicafein')
+            const accessToken = jwt.sign(jwtPayload, process.env.JWT_SECRET_KEY)
             
             res.status(200).json({
                 message: "Success, you've been logged in",
@@ -60,23 +59,23 @@ class authController{
         }
     }
 
-    //static get all
-    
     static getAll = async (req, res, next) => {
         try{
-            let users = await User.findAll()
+            let users = await User.findAll({ attributes: ['id' , 'name' , 'email'] })
             res.status(200).json(users)
         }catch(error){
             next(error)
         }
     }
-    
-
 
     static getDetail = async(req,res,next) => {
         try {
-            // User.findByPk(id)
-            const user = await User.findByPk(req.params.id)
+            let {id} = req.params
+            const user = await User.findByPk(id , {
+                attributes: ['id' , 'name' , 'email' , 'createdAt' , 'updatedAt']
+            })
+            if(!user) return next({name: "NotFound"})
+
             res.status(200).json({
                 message: 'detail',
                 user
